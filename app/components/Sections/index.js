@@ -38,7 +38,14 @@ export default class Sections extends Component {
   render () {
     return (
       <div>
-        {this.getContents().map((Content, i) => {
+        {this.getContents()
+          .filter((Content, i) => {
+            if (Content.styleguide.area === undefined || Content.styleguide.category === undefined || Content.styleguide.title === undefined) {
+              return false;
+            }
+            return true;
+          })
+          .map((Content, i) => {
           // This exists so we can pull out the displayName for props documentation
           Content.styleguide._self = <Content />
 

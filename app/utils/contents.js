@@ -21,6 +21,13 @@ export default {
     const components = []
 
     const areas = Contents
+      .filter((Content) => {
+        if (Content.styleguide.area === undefined || Content.styleguide.category === undefined || Content.styleguide.title === undefined) {
+          return false;
+        }
+
+        return true;
+      })
       .map((Content) => {
         const styleguide = Content.styleguide
 
