@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 export default class extends Component {
   static styleguide = {
     index: '5.1',
+    area: 'Atoms',
     category: 'Features!',
     title: 'Additional examples in tabs',
     description: 'Use any of the available button style types to quickly create a styled button. Just modify the `bsStyle` prop.',

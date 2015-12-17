@@ -16,12 +16,18 @@ export default class Sections extends Component {
     if (params.query) {
       data = {
         query: params.query,
-        keys: ['category', 'title', 'description', 'code']
+        keys: ['area', 'category', 'title', 'description', 'code']
       }
     } else if (params.category) {
       data = {
         query: params.title || params.category,
         keys: params.title ? ['title'] : ['category'],
+        exact: true
+      }
+    } else if (params.area) {
+      data = {
+        query: params.title || params.area,
+        keys: params.title ? ['title'] : ['area'],
         exact: true
       }
     }

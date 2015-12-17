@@ -4,6 +4,7 @@ import { Grid, Row, Col, Image } from 'react-bootstrap'
 export default class extends Component {
   static styleguide = {
     index: '3.1',
+    area: 'Atoms',
     category: 'Images',
     title: 'Example images',
     description: 'Use the `rounded`, `circle` and `thumbnail` props to customise the image.',

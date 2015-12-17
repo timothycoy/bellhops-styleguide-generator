@@ -18,21 +18,25 @@ export default {
    * @type {string[]}
    */
   navList: (() => {
-    const components = {}
+    const components = []
 
-    const categories = Contents
+    const areas = Contents
       .map((Content) => {
         const styleguide = Content.styleguide
 
-        components[styleguide.category] = components[styleguide.category] ? components[styleguide.category] : []
-        components[styleguide.category].push(styleguide.title)
+        components[styleguide.area] = components[styleguide.area] ? components[styleguide.area] : []
+        components[styleguide.area][styleguide.category] = components[styleguide.area][styleguide.category] ? components[styleguide.area][styleguide.category] : []
+        components[styleguide.area][styleguide.category].push(styleguide.title)
+        if (components[styleguide.area].indexOf(styleguide.category) === -1) {
+          components[styleguide.area].push(styleguide.category)
+        }
 
-        return Content.styleguide.category
+        return Content.styleguide.area
       })
-      .filter((category, i, categories) => categories.indexOf(category) === i)
+      .filter((area, i, areas) => areas.indexOf(area) === i)
 
     return {
-      categories: categories,
+      areas: areas,
       components: components
     }
   })(),

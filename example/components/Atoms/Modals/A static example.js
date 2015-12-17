@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 export default class extends Component {
   static styleguide = {
     index: '4.1',
+    area: 'Atoms',
     category: 'Modals',
     title: 'A static example',
     description: `
