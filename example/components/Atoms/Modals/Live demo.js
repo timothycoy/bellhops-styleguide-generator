@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 export default class extends Component {
   static styleguide = {
     index: '4.2',
+    area: 'Atoms',
     category: 'Modals',
     title: 'Live demo',
     description: 'Use `<ModalTrigger />` to create a real modal that\'s added to the document body when opened.',

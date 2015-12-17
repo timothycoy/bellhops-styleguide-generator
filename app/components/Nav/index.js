@@ -19,49 +19,56 @@ export default class Nav extends Component {
       <nav>
         <ul className='sg sg-nav'>
           <li className='sg' key={'home'}>
-            <a
-              className={`sg sg-nav-link`}
-              href={home}
-            >
-              Show All
-            </a>
+            <a className={`sg sg-nav-link`} href={home}>Show All</a>
           </li>
 
-          {contents.navList.categories
-            .map((category, i) => {
-              let isSelectedCategory = this.props.ctx.params.category === category
+          {
+            contents.navList.areas.map((area, i) => {
+              let isSelectedArea = this.props.ctx.params.area === area
 
               return (
                 <li className='sg' key={i}>
-                  <a
-                    className={`sg category sg-nav-link ${isSelectedCategory ? 'is-selected' : ''}`}
-                    href={category}
-                  >
-                    {category}
-                  </a>
+                  <a className={`sg area sg-nav-link ${isSelectedArea ? 'is-selected' : ''}`} href={area}>{area}</a>
 
                   <ul className='sg sg-sub-nav'>
-                  {
-                    contents.navList.components[category].map((component, j) => {
-                      let isSelectedComponent = this.props.ctx.params.component === component
+                    {
+                      contents.navList.components[area].map((category, j) => {
+                        let isSelectedCategory = this.props.ctx.params.category === category
 
-                      return (
-                        <li key={j}>
-                          <a
-                            className={`sg sg-nav-link ${isSelectedComponent ? 'is-selected' : ''}`}
-                            href={category + '/' + component}
-                          >
-                            {component}
-                          </a>
-                        </li>
-                      )
-                    })
-                  }
+                        if (!isSelectedArea) {
+                          return false;
+                        }
+
+                        return (
+                          <li key={j}>
+                            <a className={`sg category sg-nav-link ${isSelectedCategory ? 'is-selected' : ''}`} href={area + '/' + category}>{category}</a>
+
+                            <ul className='sg sg-sub-nav'>
+                              {
+                                contents.navList.components[area][category].map((component, k) => {
+                                  let isSelectedComponent = this.props.ctx.params.title === component
+
+                                  if (!isSelectedCategory) {
+                                    return false;
+                                  }
+
+                                  return (
+                                    <li key={k}>
+                                      <a className={`sg sg-nav-link ${isSelectedComponent ? 'is-selected' : ''}`} href={area + '/' + category + '/' + component}>{component}</a>
+                                    </li>
+                                  )
+                                })
+                              }
+                            </ul>
+                          </li>
+                        )
+                      })
+                    }
                   </ul>
-
                 </li>
               )
-            })}
+            })
+          }
         </ul>
       </nav>
     )

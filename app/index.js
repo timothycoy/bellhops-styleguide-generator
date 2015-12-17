@@ -22,9 +22,9 @@ page('/search/:query?', (ctx) => {
 })
 
 /**
- * Category and Detail
+ * Area, Category, and Detail
  */
-page('/:category/:title?', (ctx) => {
+page('/:area/:category?/:title?', (ctx) => {
   ReactDOM.render(<App ctx={ctx} />, mountNode)
 })
 

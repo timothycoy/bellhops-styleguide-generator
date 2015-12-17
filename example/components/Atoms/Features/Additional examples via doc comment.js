@@ -12,6 +12,7 @@ export default class extends Component {
 
   static styleguide = {
     index: '5.2',
+    area: 'Atoms',
     category: 'Features!',
     title: 'Additional examples via doc comment',
     code: `<Button block bsStyle='primary'>Primary</Button>`
