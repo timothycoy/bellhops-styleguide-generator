@@ -37,8 +37,10 @@ export default class Section extends Component {
   }
 
   highlight () {
-    let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
-    hljs.highlightBlock(node)
+    if (this.props.code) {
+      let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
+      hljs.highlightBlock(node)
+    }
   }
 
   renderHeading () {
