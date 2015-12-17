@@ -49,13 +49,13 @@ export default class Section extends Component {
         <span className='sg sg-section-heading-title'>
           <a
             className='sg sg-section-heading-title-link'
-            href={`${this.props.category}/${this.props.title}`}
+            href={`${this.props.area}/${this.props.category}/${this.props.title}`}
           >
             {this.props.title}
             <i className='fa fa-link' />
           </a>
         </span>
-        <a className='sg sg-section-heading-category' href={this.props.category}>
+        <a className='sg sg-section-heading-category' href={this.props.area + '/' + this.props.category}>
           {this.props.category}
         </a>
       </h1>
