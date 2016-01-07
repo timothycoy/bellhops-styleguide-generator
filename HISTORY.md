@@ -1,7 +1,12 @@
+# 2.6.0, 3.1.0 (2016-01-07)
+
+  * Allow passing a Javascript file for the `--config` option. This will allow usage of `webpackConfig` outside of using `gulp` or `grunt`
+  * Note that babel 6.4 requires semicolons in your class properties https://github.com/feross/standard/issues/372; packages have been fixed to 6.3 for now due to conflicts with using `standard.
+
 # 2.5.4, 3.0.2 (2015-12-13)
 
   * Fix "show all" link where it was not using the configured base (if used)
-  
+
 # 2.5.2, 3.0.1 (2015-12-13)
 
   * Fix syntax highlighting when individual components in the sidebar is selected
@@ -23,7 +28,7 @@
 # 2.3.0 (2015-12-08)
 
   Performance enhancements:
-  
+
   * separate vendor components into another bundle
   * Cache highlighted nodes so they are not re-processed. For really large pages, the highlighter can take a LOT of time for processing before the page is re-rendered. This fix hopefully resolves most of that.
   * `highlight.js` updated to `9.x`
@@ -51,4 +56,3 @@
   * Complete overhaul of the core `rsg.js` lib to support `webpack`
   * `react-docgen` generation and asset distribution moved to custom webpack plugins
   * Fixed a bug where using input text boxes and typing into them will shift focus to the search box
-

@@ -2,16 +2,17 @@
 
 [![npm](https://img.shields.io/npm/v/rsg-alt.svg)](https://npmjs.org/package/rsg-alt)
 
-* Use the `2.x` versions for babel 5, `3.x` for babel 6.
+* Use the `2.x` versions for babel 5, `3.x` for babel 6.'
+* Note that babel 6.4 requires semicolons in your class properties https://github.com/feross/standard/issues/372; packages have been fixed to 6.3 for now due to conflicts with using `standard.
 
 A React component guide that generates code examples, prop documentation, rendered component samples and is built for active development.
 
-* Renders out components that can be interacted with 
+* Renders out components that can be interacted with
 * Uses `webpack` + hot module replacement to automatically update the guide as you work on your components
 * `react-docgen` is used under the hood to document your component's `propTypes`
 * Can manually + automatically generate code samples w/ syntax highlighting
 
-![preview](https://cloud.githubusercontent.com/assets/855434/11770687/a754aea4-a1b9-11e5-8ae2-1b5db451c8d5.png)  
+![preview](https://cloud.githubusercontent.com/assets/855434/11770687/a754aea4-a1b9-11e5-8ae2-1b5db451c8d5.png)
 [Demo](http://theogravity.github.io/react-styleguide-generator-alt/) using the [React-Bootstrap](http://react-bootstrap.github.io/).
 
 ## Fork notice
@@ -25,6 +26,7 @@ Differences:
 * `react-docgen` generation and asset distribution moved to custom webpack plugins
 * Fixed a bug where using input text boxes and typing into them will shift focus to the search box
 * Improved highlighting performance - extremely large guides should not take forever to render
+* Config file can now be an exported object, allowing for more dynamic configuration
 
 See `HISTORY.md` for future update info
 
@@ -177,16 +179,19 @@ Options:
   -t, --title      Used as a page title        ['Style Guide']
   -r, --root       Set the root path           ['.']
   -f, --files      Inject references to files  ['']
-  -c, --config     Use the config file         ['styleguide.json']
+  -c, --config     Use a js/json config file   ['styleguide.json']
   -p, --pushstate  Enable HTML5 pushState      [false]
   -v, --verbose    Verbose output              [false]
   -d, --dev        Start server with webpack hmr [3000]
 
 Examples:
   rsg 'example/**/*.js' -t 'Great Style Guide' -f 'a.css, a.js' -v
-  
+
   # Necessary to use a config file if you want to enable react-docgen
   rsg 'example/**/*.js' -c 'styleguide.json' -v
+
+  # Example 2 - config file does module.exports = { ... }
+  rsg 'example/**/*.js' -c 'styleguide.js' -v
 ```
 
 #### Gulp
@@ -258,14 +263,14 @@ Refers to [glob syntax](https://github.com/isaacs/node-glob) or it can be a dire
 
 ##### output
 
-Type: `String`  
+Type: `String`
 Default: `'styleguide'`
 
 Output directory path.
 
 ##### title
 
-Type: `String`  
+Type: `String`
 Default: `'Style Guide'`
 
 Used as a page title and in the page header.
@@ -279,14 +284,14 @@ An array of `glob`-able file/paths for `react-docgen` to parse. If not specified
 
 ##### root
 
-Type: `String`  
+Type: `String`
 Default: `'.'`
 
 Set the root path. For example, if the styleguide is hosted at `http://example.com/styleguide` the `options.root` should be `styleguide`.
 
 ##### files
 
-Type: `Array`  
+Type: `Array`
 Default: `null`
 
 Inject references to files. A usage example is:
@@ -330,23 +335,39 @@ Inject file references into index.html if the files with the extension `.css` or
 
 ##### config
 
-Type: `String|Object`  
+Type: `String|Object`
 Default: `styleguide.json`
 
 The entire range of RSG API options is allowed. [Usage example](https://github.com/theogravity/react-styleguide-generator-alt/blob/master/example/styleguide.json).
 
-An object can be passed instead of a filename that contains the RSG API options.
+- An object can be passed instead of a filename that contains the RSG API options.
+- A Javascript file can be passed in that exports an object instead:
+
+```js
+// styleguide.js
+module.exports = {
+  "title": "React Style Guide",
+  "files": [
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
+    "example/example.css"
+  ],
+  "babelConfig": {
+    "stage": 0
+  },
+  "webpackConfig": {}
+}
+```
 
 ##### pushstate
 
-Type: `String`  
+Type: `String`
 Default: `false`
 
 Enable HTML5 pushState. When this option is enabled, styleguide will use history API.
 
 ##### babelConfig
 
-Type: `Object`  
+Type: `Object`
 Default: `null`
 
 A usage example is below. See the [babel docs](http://babeljs.io/docs/usage/options/) for the complete list.
