@@ -37,9 +37,11 @@ export default class Section extends Component {
   }
 
   highlight () {
-    let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
-    if (node) {
-      hljs.highlightBlock(node)
+    if (this.props.code) {
+      let node = document.querySelector('[data-highlight-id="' + this.props._id + '"] code.example-code')
+      if (node) {
+        hljs.highlightBlock(node)
+      }
     }
   }
 
@@ -49,13 +51,13 @@ export default class Section extends Component {
         <span className='sg sg-section-heading-title'>
           <a
             className='sg sg-section-heading-title-link'
-            href={`${this.props.category}/${this.props.title}`}
+            href={`${this.props.area}/${this.props.category}/${this.props.title}`}
           >
             {this.props.title}
             <i className='fa fa-link' />
           </a>
         </span>
-        <a className='sg sg-section-heading-category' href={this.props.category}>
+        <a className='sg sg-section-heading-category' href={this.props.area + '/' + this.props.category}>
           {this.props.category}
         </a>
       </h1>
